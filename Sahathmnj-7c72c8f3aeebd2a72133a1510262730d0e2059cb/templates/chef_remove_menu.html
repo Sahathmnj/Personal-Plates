@@ -1,0 +1,83 @@
+{% extends "chef_layout.html" %}
+
+{% block title %}
+    Display Foods
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Food Name</th>
+                <th>Ingredients</th>
+                <th>Price</th>
+                <th>Meat Category</th>
+                <th>Register Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for menu in chef_menus %}
+                <tr>
+                    <td>{{ menu.food_name }}</td>
+                    <td>{{ menu.ingredients }}</td>
+                    <td>{{ menu.price | usd }}</td>
+                    <td>{{ menu.meat_category }}</td>
+                    <td>{{ menu.register_date }}</td>
+                    <td>
+                        <form action="/chef_remove_menu" method="post">
+                            <input name="menu_id" type="hidden" value="{{ menu.id }}">
+                            <input name="chef_id" type="hidden" value="{{ menu.chef_id }}">
+                            <input name="food_name" type="hidden" value="{{ menu.food_name }}">
+                            <input name="ingredients" type="hidden" value="{{ menu.ingredients }}">
+                            <input name="price" type="hidden" value="{{ menu.price }}">
+                            <input name="meat_category" type="hidden" value="{{ menu.meat_category }}">
+                            <input name="register_date" type="hidden" value="{{ menu.register_date }}">
+                            <button class="btn btn-info" type="submit">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+    <h5 class="text-primary">My Cart List</h5>
+    <br>
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Food Name</th>
+                <th>Ingredients</th>
+                <th>Price</th>
+                <th>Meat Category</th>
+                <th>Register Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart in carts %}
+                <tr>
+                    <td>{{ cart.food_name }}</td>
+                    <td>{{ cart.ingredients }}</td>
+                    <td>{{ cart.price | usd }}</td>
+                    <td>{{ cart.meat_category }}</td>
+                    <td>{{ cart.register_date }}</td>
+                    <td>
+                        <form action="/chef_move_menu_from_cart" method="post">
+                            <input name="menu_id" type="hidden" value="{{ cart.id }}">
+                            <input name="chef_id" type="hidden" value="{{ cart.chef_id }}">
+                            <input name="cart_id" type="hidden" value="{{ cart.cart_id }}">
+                            <button class="btn btn-warning" type="submit">Remove from Cart</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br><br>
+    <form action="/chef_deregister_menu" method="post">
+        <button class="btn btn-primary" type="submit">Deregister Food</button>
+    </form>
+
+{% endblock %}

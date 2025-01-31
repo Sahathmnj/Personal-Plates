@@ -1,0 +1,46 @@
+{% extends "administrator_layout.html" %}
+
+{% block title %}
+    View Chef Menus
+{% endblock %}
+
+{% block main %}
+
+    {% if order_amount > 0  %}
+
+        <h5 class="text-primary">Chefs Menu</h5>
+        <br>
+        <table class="table table-striped">
+            <thead class="table-success">
+                <tr>
+                    <th>Chef Name</th>
+                    <th>Food Name</th>
+                    <th>Ingredients</th>
+                    <th>Price</th>
+                    <th>Registered Date</th>
+                    <th>Meat Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in menus %}
+                    <tr>
+                        <td>{{ menu.chef_name }}</td>
+                        <td>{{ menu.food_name }}</td>
+                        <td>{{ menu.ingredients }}</td>
+                        <td>{{ menu.price | usd }}</td>
+                        <td>{{ menu.register_date }}</td>
+                        <td>{{ menu.meat_category }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>{{ order_amount | usd }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "customer_layout.html" %}
+
+{% block title %}
+    Place Order
+{% endblock %}
+
+{% block main %}
+    <form action="/customer_place_order" method="post">
+        <div class="mb-3">
+            <select name=food_name>
+                <option disabled selected value="">Search By Food Name</option>
+                {% for chef in food_names %}
+                    <option value="{{ chef.food_name }} ">{{ chef.food_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <select name=zip_code>
+                <option disabled selected value="">Search by Zip Code</option>
+                {% for chef in zip_codes %}
+                    <option value="{{ chef.zip_code }} ">{{ chef.zip_code }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <select name=meat_category>
+                <option disabled selected value="">Search by Meat Category</option>
+                {% for chef in meat_category %}
+                    <option value="{{ chef.meat_category }} ">{{ chef.meat_category }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <select name=first_name>
+                <option disabled selected value="">Search by Chef's First Name</option>
+                {% for chef in first_names %}
+                    <option value="{{ chef.first_name }} ">{{ chef.first_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br><br><br>
+        <button class="btn btn-primary" type="submit">Find Chef Food</button>
+    </form>
+{% endblock %}

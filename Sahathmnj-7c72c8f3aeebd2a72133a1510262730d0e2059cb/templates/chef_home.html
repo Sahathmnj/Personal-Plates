@@ -1,0 +1,36 @@
+{% extends "chef_layout.html" %}
+
+{% block main %}
+
+    {% if order_total > 0  %}
+
+        <h5 class="text-primary">My Registered Foods</h5>
+        <br><br>
+        <table class="table table-striped">
+            <thead class="table-success">
+                <tr>
+                    <th>Menu Id</th>
+                    <th>Food Name</th>
+                    <th>Ingredients</th>
+                    <th>Price</th>
+                    <th>Registered Date</th>
+                    <th>Meat Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in menus %}
+                    <tr>
+                        <td>{{ menu.id }}</td>
+                        <td>{{ menu.food_name }}</td>
+                        <td>{{ menu.ingredients }}</td>
+                        <td>{{ menu.price | usd }}</td>
+                        <td>{{ menu.register_date }}</td>
+                        <td>{{ menu.meat_category }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "administrator_layout.html" %}
+
+{% block title %}
+    Administrator
+{% endblock %}
+
+{% block main %}
+
+    <h5 class="text-primary">Customers List</h5>
+
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Customer Name</th>
+                <th>Food Address</th>
+                <th>Phone Number</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customer_info %}
+                <tr>
+                    <td>{{ customer.customer_name }}</td>
+                    <td>{{ customer.address }}</td>
+                    <td>{{ customer.phone_number }}</td>
+                    <td>{{ customer.email_address }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+
+    <h5 class="text-primary">Chefs List</h5>
+    <br>
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Chef Name</th>
+                <th>Food Address</th>
+                <th>Phone Number</th>
+                <th>Email Address</th>
+                <th>Verified Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chef in chefs_info %}
+                <tr>
+                    <td>{{ chef.chef_name }}</td>
+                    <td>{{ chef.address }}</td>
+                    <td>{{ chef.phone_number }}</td>
+                    <td>{{ chef.email_address }}</td>
+                    <td>{{ chef.verified_status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

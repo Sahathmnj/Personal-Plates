@@ -1,0 +1,54 @@
+{% extends "customer_layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register_customer" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" required autofocus class="form-control mx-auto w-auto" name="firstname" placeholder="First Name" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="lastname" placeholder="Last Name" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="middlename" placeholder="Middle Name" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="streetnumber" placeholder="Street Number" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="streetaddress" placeholder="Street Address" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="city" placeholder="City" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="state" placeholder="State" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="zipcode" placeholder="Zip Code" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="country" placeholder="Country" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="phonenumber" placeholder="Phone Number" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="emailaddress" placeholder="Email Address" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" required class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Reenter Password" type="password">
+        </div>
+        <br><br>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}

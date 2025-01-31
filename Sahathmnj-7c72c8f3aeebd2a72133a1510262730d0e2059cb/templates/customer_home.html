@@ -1,0 +1,50 @@
+{% extends "customer_layout.html" %}
+
+{% block title %}
+    Customer Order
+{% endblock %}
+
+{% block main %}
+
+    {% if order_total > 0  %}
+        <h5 class="text-primary">My Orders</h5>
+        <br>
+        <table class="table table-striped">
+            <thead class="table-success">
+                <tr>
+                    <th>Order Id</th>
+                    <th>Item Id</th>
+                    <th>Order Description</th>
+                    <th>Order Date</th>
+                    <th>Delivery Status</th>
+                    <th>Cook Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.item_id }}</td>
+                        <td>{{ order.item_description }}</td>
+                        <td>{{ order.order_date }}</td>
+                        <td>{{ order.delivery_status }}</td>
+                        <td>{{ order.chef_name }}</td>
+                        <td>{{ order.price | usd}}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>{{ order_total | usd }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    {% endif %}
+
+{% endblock %}

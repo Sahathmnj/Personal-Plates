@@ -1,0 +1,62 @@
+{% extends "chef_layout.html" %}
+
+{% block title %}
+    Display Foods
+{% endblock %}
+
+{% block main %}
+
+    <form action="/chef_add_menu" method="post">
+        <label for="food_name">Food Name:</label><br>
+        <input required type="text" name="food_name"><br><br>
+        <label for="ingrediants">Ingredients:</label><br>
+        <input required type="text" name="ingredients"><br><br>
+        <label for="price">Price:</label><br>
+        <input required type="number" name="price"><br><br>
+        <select required name="meat_category">
+            <option disabled selected value="">Meat Category</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Non Vegetarian">Non Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+        </select>
+        <br><br><br>
+        <button class="btn btn-info" type="submit">Add to Cart</button>
+    </form>
+
+    <br><br><br>
+
+    <h5 class="text-primary">My Cart List</h5>
+    <br>
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Food Name</th>
+                <th>Ingredients</th>
+                <th>Meat Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart in carts %}
+                <tr>
+                    <td>{{ cart.food_name }}</td>
+                    <td>{{ cart.ingredients }}</td>
+                    <td>{{ cart.meat_category }}</td>
+                    <td>{{ cart.price | usd }}</td>
+                    <td>
+                        <form action="/chef_remove_cart" method="post">
+                            <input name="cart_id" type="hidden" value="{{ cart.cart_id }}">
+                            <button class="btn btn-warning" type="submit">Remove from Cart</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+    <form action="/chef_insert_menu" method="post">
+        <button class="btn btn-primary" type="submit">Register Food</button>
+    </form>
+
+{% endblock %}

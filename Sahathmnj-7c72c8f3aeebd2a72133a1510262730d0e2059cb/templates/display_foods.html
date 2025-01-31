@@ -1,0 +1,68 @@
+{% extends "customer_layout.html" %}
+
+{% block title %}
+    Display Foods
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Food Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for food in chef_foods %}
+                <tr>
+                    <td>{{ food.food_name }}</td>
+                    <td>{{ food.price | usd }}</td>
+                    <td>
+                        <form action="/customer_add_cart" method="post">
+                            <input name="food_id" type="hidden" value="{{ food.id }}">
+                            <input name="chef_id" type="hidden" value="{{ food.chef_id }}">
+                            <input name="food_name" type="hidden" value="{{ food.food_name }}">
+                            <input name="price" type="hidden" value="{{ food.price }}">
+                            <button class="btn btn-info" type="submit">Add to Cart</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+    <h5 class="text-primary">My Cart List </h5>
+    <br>
+
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Food Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart in carts %}
+                <tr>
+                    <td>{{ cart.food_name }}</td>
+                    <td>{{ cart.price | usd }}</td>
+                    <td>
+                        <form action="/customer_remove_cart" method="post">
+                            <input name="food_id" type="hidden" value="{{ cart.id }}">
+                            <input name="chef_id" type="hidden" value="{{ cart.chef_id }}">
+                            <input name="cart_id" type="hidden" value="{{ cart.cart_id }}">
+                            <button class="btn btn-warning" type="submit">Remove from Cart</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="/customer_add_food" method="post">
+        <button class="btn btn-primary" type="submit">Place Order</button>
+    </form>
+
+{% endblock %}
